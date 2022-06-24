@@ -13,7 +13,7 @@ const app = express();
 morgan.token("body", (req) => JSON.stringify(req.body));
 
 // Connect to MongoDB
-logger.info(`Connecting to ${config.MONGO_URI}`);
+logger.info("Connecting to MongoDB");
 
 mongoose
   .connect(config.MONGO_URI)

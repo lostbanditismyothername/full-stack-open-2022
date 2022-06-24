@@ -9,7 +9,6 @@ blogRouter.get("/", (req, res) => {
 
 blogRouter.post("/", (req, res) => {
   const { body } = req;
-  console.log(req);
 
   const blog = new Blog({
     title: body.title,
