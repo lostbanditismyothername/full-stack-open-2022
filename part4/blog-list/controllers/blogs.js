@@ -8,7 +8,15 @@ blogRouter.get("/", (req, res) => {
 });
 
 blogRouter.post("/", (req, res) => {
-  const blog = new Blog(req.body);
+  const { body } = req;
+  console.log(req);
+
+  const blog = new Blog({
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes,
+  });
 
   blog.save().then((result) => {
     res.status(201).json(result);
