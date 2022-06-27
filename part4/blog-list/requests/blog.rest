@@ -2,6 +2,10 @@ GET http://localhost:3003/api/blogs
 
 ###
 
+GET http://localhost:3003/api/blogs/62b5e5eb87252a8afc10b964
+
+###
+
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
@@ -11,3 +15,19 @@ Content-Type: application/json
     "url": "lorem-ipsum.com",
     "likes": 2
 }
+
+###
+
+PUT http://localhost:3003/api/blogs/62b5e5f887252a8afc10b966
+Content-Type: application/json
+
+{
+    "title": "Some new title",
+    "author": "some new author",
+    "url": "howboringami.com",
+    "likes": 200
+}
+
+###
+
+DELETE  http://localhost:3003/api/blogs/62b5e5eb87252a8afc10b964
