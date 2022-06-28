@@ -13,7 +13,7 @@ const unknownEndpoint = (req, res) => {
 };
 
 // eslint-disable-next-line consistent-return
-const errorHandler = (error, req, res, next) => {
+const errorHandler = (error, _req, res, next) => {
   logger.error(error.message);
 
   if (error.name === "CastError") {

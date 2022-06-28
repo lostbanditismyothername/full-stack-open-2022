@@ -57,7 +57,6 @@ describe("Endpoints", () => {
   test("put", async () => {
     const blogsAtStart = await helper.blogsInDb();
     const blogToChange = blogsAtStart[0];
-    const formerLikes = blogToChange.likes;
     const newLikes = 1000;
     const newBlogData = { ...blogToChange, likes: newLikes };
 
