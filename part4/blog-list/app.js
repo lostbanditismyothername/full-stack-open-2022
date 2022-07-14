@@ -7,6 +7,7 @@ const config = require("./utils/config");
 const logger = require("./utils/logger");
 const middleware = require("./utils/middleware");
 const blogRouter = require("./controllers/blogs");
+const userRouter = require("./controllers/users");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(morgan(":method :url :status :res[content-length] - :response-time ms :b
 app.use(middleware.requestLogger);
 
 app.use("/api/blogs", blogRouter);
+app.use("/api/login", userRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
