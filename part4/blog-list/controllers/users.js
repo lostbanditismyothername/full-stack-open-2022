@@ -15,7 +15,14 @@ userRouter.post("/", async (req, res) => {
   // check if user already exists
   const doesUserExist = await User.findOne({ username });
   if (doesUserExist) {
-    return res.status(404).json({ error: "username already exists" });
+    return res.status(400).json({ error: "username already exists" });
+  }
+
+  // check if the inputs are valid
+  if (password.length < 3 || username.length < 3) {
+    return res
+      .status(400)
+      .json({ error: "username and password should contain at least 3 characters" });
   }
 
   // hash the password
