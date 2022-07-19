@@ -31,7 +31,7 @@ app.use(morgan(":method :url :status :res[content-length] - :response-time ms :b
 app.use(middleware.requestLogger);
 
 app.use("/api/blogs", blogRouter);
-app.use("/api/login", userRouter);
+app.use("/api/users", userRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);

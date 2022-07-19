@@ -10,7 +10,7 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "faith, love & courage",
+    "title": "asdasdasdasdasd",
     "author": "somebody",
     "url": "lorem-ipsum.com",
     "likes": 2

@@ -1,14 +1,14 @@
-GET http://localhost:3003/api/login
+GET http://localhost:3003/api/users
 Content-Type: application/json
 
 ###
 
 
-POST http://localhost:3003/api/login
+POST http://localhost:3003/api/users
 Content-Type: application/json
 
 {
-    "username": "xzd",
-    "name": "rose",
-    "password": "x"
+    "username": "slash",
+    "name": "asdasd",
+    "password": "xasdasd"
 }
