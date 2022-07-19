@@ -4,10 +4,16 @@ const Blog = require("../models/blog");
 const User = require("../models/user");
 const logger = require("../utils/logger");
 const config = require("../utils/config");
+const { findByIdAndDelete } = require("../models/blog");
 
 blogRouter.get("/", async (req, res) => {
   const blogs = await Blog.find({}).populate("user");
   res.status(200).json(blogs);
+});
+
+blogRouter.get("/:id", async (req, res) => {
+  const blog = await Blog.findById(req.params.id);
+  res.status(200).json(blog);
 });
 
 blogRouter.post("/", async (req, res) => {
@@ -38,13 +44,22 @@ blogRouter.post("/", async (req, res) => {
 });
 
 blogRouter.delete("/:id", async (req, res) => {
-  const blog = await Blog.findByIdAndDelete(req.params.id);
+  const blog = await Blog.findById(req.params.id);
+  const token = req.token;
+
+  const decodedToken = jwt.verify(token, config.SECRET);
+
+  const user = await User.findById(decodedToken.id);
+  const creatorUser = await User.findById(blog.user._id.toString());
 
   if (!blog) {
     logger.error("no such blog");
     res.status(404).send("no such blog in db");
+  } else if (creatorUser._id.toString() !== user._id.toString()) {
+    res.status(401).send("you are not authorized to perform this action");
   } else {
-    res.status(204);
+    await Blog.findByIdAndDelete(blog.id);
+    res.status(200);
   }
 });
 
