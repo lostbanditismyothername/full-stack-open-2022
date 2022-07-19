@@ -5,15 +5,6 @@ const User = require("../models/user");
 const logger = require("../utils/logger");
 const config = require("../utils/config");
 
-// get token from auth header
-const getTokenFrom = (req) => {
-  const authorization = req.get("authorization");
-  if (authorization && authorization.toLowerCase().startsWith("bearer")) {
-    return authorization.substring(7);
-  }
-  return null;
-};
-
 blogRouter.get("/", async (req, res) => {
   const blogs = await Blog.find({}).populate("user");
   res.status(200).json(blogs);
@@ -21,7 +12,8 @@ blogRouter.get("/", async (req, res) => {
 
 blogRouter.post("/", async (req, res) => {
   const { title, author, url, likes } = req.body;
-  const token = getTokenFrom(req);
+  const token = req.token;
+
   const decodedToken = jwt.verify(token, config.SECRET);
 
   if (!decodedToken.id) {

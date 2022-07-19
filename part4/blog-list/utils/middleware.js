@@ -12,7 +12,6 @@ const unknownEndpoint = (req, res) => {
   res.status(404).send({ Error: "Unknown Endpoint" });
 };
 
-// eslint-disable-next-line consistent-return
 const errorHandler = (error, _req, res, next) => {
   logger.error(error.message);
 
@@ -27,8 +26,22 @@ const errorHandler = (error, _req, res, next) => {
   next(error);
 };
 
+const tokenExtractor = (req, res, next) => {
+  const auth = req.get("Authorization");
+  let token;
+
+  if (auth && auth.toLowerCase().startsWith("bearer")) {
+    token = auth.substring(7);
+  }
+
+  req.token = token;
+
+  next();
+};
+
 module.exports = {
   requestLogger,
   unknownEndpoint,
   errorHandler,
+  tokenExtractor,
 };
