@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { PORT } = process.env;
+const { PORT, SECRET } = process.env;
 
 // eslint-disable-next-line operator-linebreak
 const MONGO_URI =
@@ -9,4 +9,5 @@ const MONGO_URI =
 module.exports = {
   PORT,
   MONGO_URI,
+  SECRET,
 };

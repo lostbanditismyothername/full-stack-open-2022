@@ -8,9 +8,10 @@ GET http://localhost:3003/api/blogs/62b5e5eb87252a8afc10b964
 
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNsYXNoeCIsImlkIjoiNjJkNjk3M2RmOTBmMmFiODcxYTMwNzJkIiwiaWF0IjoxNjU4MjQwNTA3fQ.mSLKPG4i71g9zXHLFLbu8o66eujar--UUu-MbnpmPe4
 
 {
-    "title": "asdasdasdasdasd",
+    "title": "asdasdasd",
     "author": "somebody",
     "url": "lorem-ipsum.com",
     "likes": 2
