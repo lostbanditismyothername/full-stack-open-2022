@@ -4,7 +4,6 @@ const Blog = require("../models/blog");
 const User = require("../models/user");
 const logger = require("../utils/logger");
 const config = require("../utils/config");
-const { findByIdAndDelete } = require("../models/blog");
 
 blogRouter.get("/", async (req, res) => {
   const blogs = await Blog.find({}).populate("user");
@@ -18,15 +17,8 @@ blogRouter.get("/:id", async (req, res) => {
 
 blogRouter.post("/", async (req, res) => {
   const { title, author, url, likes } = req.body;
-  const token = req.token;
 
-  const decodedToken = jwt.verify(token, config.SECRET);
-
-  if (!decodedToken.id) {
-    return res.status(401).json({ error: "token missing or invalid" });
-  }
-
-  const user = await User.findById(decodedToken.id);
+  const user = req.user;
 
   const newBlogObj = new Blog({
     title: title,
@@ -45,11 +37,8 @@ blogRouter.post("/", async (req, res) => {
 
 blogRouter.delete("/:id", async (req, res) => {
   const blog = await Blog.findById(req.params.id);
-  const token = req.token;
 
-  const decodedToken = jwt.verify(token, config.SECRET);
-
-  const user = await User.findById(decodedToken.id);
+  const user = req.user;
   const creatorUser = await User.findById(blog.user._id.toString());
 
   if (!blog) {
