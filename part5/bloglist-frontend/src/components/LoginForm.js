@@ -1,7 +1,7 @@
 import { useState } from "react";
 import loginService from "../services/login";
 
-const LoginForm = () => {
+const LoginForm = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
@@ -15,6 +15,7 @@ const LoginForm = () => {
       setUsername("");
       setPassword("");
       setUser(user);
+      setIsLoggedIn(true);
     } catch (exception) {
       console.error("wrong credentials");
     }
