@@ -1,0 +1,17 @@
+GET http://localhost:3003/api/users
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im90aGVyb3pndXIiLCJpZCI6IjYyZDdiMjM4ZDUzNzcxYjA4YTk0ZTY3OCIsImlhdCI6MTY1ODg0MTU1MCwiZXhwIjoxNjU4ODQ1MTUwfQ.CCM0rHl4U22YIobDEL7tAQ3A1BuAaVEAh30pnZGELEU
+
+
+###
+
+
+POST http://localhost:3003/api/users
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im90aGVyb3pndXIiLCJpZCI6IjYyZDdiMjM4ZDUzNzcxYjA4YTk0ZTY3OCIsImlhdCI6MTY1ODg0MTU1MCwiZXhwIjoxNjU4ODQ1MTUwfQ.CCM0rHl4U22YIobDEL7tAQ3A1BuAaVEAh30pnZGELEU
+
+{
+    "username": "comeonjimmy",
+    "name": "ozgur",
+    "password": "ozgur"
+}

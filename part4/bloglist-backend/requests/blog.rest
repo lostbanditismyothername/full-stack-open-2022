@@ -1,0 +1,40 @@
+GET http://localhost:3003/api/blogs
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im90aGVyb3pndXIiLCJpZCI6IjYyZDdiMjM4ZDUzNzcxYjA4YTk0ZTY3OCIsImlhdCI6MTY1ODg0MTU1MCwiZXhwIjoxNjU4ODQ1MTUwfQ.CCM0rHl4U22YIobDEL7tAQ3A1BuAaVEAh30pnZGELEU
+
+
+###
+
+GET http://localhost:3003/api/blogs/62d69a31be493d2ad73f3ab9
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im90aGVyb3pndXIiLCJpZCI6IjYyZDdiMjM4ZDUzNzcxYjA4YTk0ZTY3OCIsImlhdCI6MTY1ODg0MTU1MCwiZXhwIjoxNjU4ODQ1MTUwfQ.CCM0rHl4U22YIobDEL7tAQ3A1BuAaVEAh30pnZGELEU
+
+
+###
+
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im90aGVyb3pndXIiLCJpZCI6IjYyZDdiMjM4ZDUzNzcxYjA4YTk0ZTY3OCIsImlhdCI6MTY1ODg0MTU1MCwiZXhwIjoxNjU4ODQ1MTUwfQ.CCM0rHl4U22YIobDEL7tAQ3A1BuAaVEAh30pnZGELEU
+{
+    "title": "ozgur's x",
+    "author": "ozgur",
+    "url": "lorem-ipsum.com",
+    "likes": 0
+}
+
+###
+
+PUT http://localhost:3003/api/blogs/62b5e5f887252a8afc10b966
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im90aGVyb3pndXIiLCJpZCI6IjYyZDdiMjM4ZDUzNzcxYjA4YTk0ZTY3OCIsImlhdCI6MTY1ODg0MTU1MCwiZXhwIjoxNjU4ODQ1MTUwfQ.CCM0rHl4U22YIobDEL7tAQ3A1BuAaVEAh30pnZGELEU
+
+
+{
+    "title": "Some new title",
+    "author": "some new author",
+    "url": "howboringami.com",
+    "likes": 200
+}
+
+###
+
+DELETE  http://localhost:3003/api/blogs/62d6e78ed48615318f3ac114
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im96Z3VyIiwiaWQiOiI2MmQ2ZTcyM2Q0ODYxNTMxOGYzYWMxMTAiLCJpYXQiOjE2NTgyNTExMzAsImV4cCI6MTY1ODI1NDczMH0.jxaj-UlF9E8FZSVAVmFT6_10IhZj466Q4kVV4U3q8ws
