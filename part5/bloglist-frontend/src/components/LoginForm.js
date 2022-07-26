@@ -1,11 +1,23 @@
 import { useState } from "react";
+import loginService from "../services/login";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
 
-  const handleLogin = (e) => {
+  // handle user login
+  const handleLogin = async (e) => {
     e.preventDefault();
+
+    try {
+      const user = await loginService.login({ username, password });
+      setUsername("");
+      setPassword("");
+      setUser(user);
+    } catch (exception) {
+      console.error("wrong credentials");
+    }
   };
 
   return (
