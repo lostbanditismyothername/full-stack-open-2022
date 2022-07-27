@@ -1,22 +1,33 @@
 import { useState } from "react";
 import LoginForm from "./components/LoginForm";
 import Blogs from "./components/Blogs";
+import blogService from "./services/blogs";
+import { useEffect } from "react";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loggedInUser, setLoggedInUser] = useState(false);
+  const [user, setUser] = useState(null);
 
-  if (!isLoggedIn) {
+  // check if user exists in the local storage
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem("loggedBlogger");
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+      blogService.setToken(user.token);
+    }
+  }, []);
+
+  if (!user) {
     return (
       <>
-        <LoginForm setIsLoggedIn={setIsLoggedIn} setLoggedInUser={setLoggedInUser} />
+        <LoginForm setUser={setUser} />
       </>
     );
   }
 
   return (
     <div>
-      <p>{loggedInUser.name} logged in</p>
+      <p>{user.name} logged in</p>
       <Blogs />
     </div>
   );
