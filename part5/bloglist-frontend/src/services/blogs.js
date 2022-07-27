@@ -40,7 +40,7 @@ const remove = async (id, newObj) => {
     headers: { Authorization: token },
   };
 
-  const res = await axios.delete(`${baseUrl}/${id}`, newObj, config);
+  const res = await axios.delete(`${baseUrl}/${id}`, config);
   return res.data;
 };
 
