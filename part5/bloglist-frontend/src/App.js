@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LoginForm from "./components/LoginForm";
 import Blogs from "./components/Blogs";
+import BlogForm from "./components/BlogForm";
 import blogService from "./services/blogs";
 import { useEffect } from "react";
 
@@ -35,6 +36,7 @@ const App = () => {
     <div>
       <p>{user.name} logged in</p>
       <button onClick={handleLogout}>logout</button>
+      <BlogForm />
       <Blogs />
     </div>
   );
