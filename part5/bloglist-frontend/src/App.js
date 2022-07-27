@@ -17,6 +17,12 @@ const App = () => {
     }
   }, []);
 
+  // handleLogout
+  const handleLogout = () => {
+    window.localStorage.removeItem("loggedBlogger");
+    window.location.href = "/login";
+  };
+
   if (!user) {
     return (
       <>
@@ -28,6 +34,7 @@ const App = () => {
   return (
     <div>
       <p>{user.name} logged in</p>
+      <button onClick={handleLogout}>logout</button>
       <Blogs />
     </div>
   );
