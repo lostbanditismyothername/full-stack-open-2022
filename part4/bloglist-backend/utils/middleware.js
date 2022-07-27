@@ -29,12 +29,11 @@ const errorHandler = (error, _req, res, next) => {
   next(error);
 };
 
-// Unless: excludes the specified route from middleware
-
 // Extracts the token in Auth header and places it in request obj
 const tokenExtractor = (req, res, next) => {
   // skip for login since there will be no token available yet
-  if (req.path === "/api/login") {
+  console.log("---", req.path);
+  if (req.path === "/api/login" || req.path === "/api/users") {
     return next();
   }
 
@@ -43,7 +42,6 @@ const tokenExtractor = (req, res, next) => {
 
   if (auth && auth.toLowerCase().startsWith("bearer")) {
     token = auth.substring(7);
-    console.log("token extracted from auth header");
   } else {
     return res.status(401).json({ error: "token couldn't be found" });
   }
@@ -56,7 +54,7 @@ const tokenExtractor = (req, res, next) => {
 // Checks the token and finds the user that token belongs to
 const userExtractor = async (req, res, next) => {
   // skip for login since there will be no token available yet
-  if (req.path === "/api/login") {
+  if (req.path === "/api/login" || req.path === "/api/users") {
     return next();
   }
 
@@ -68,7 +66,6 @@ const userExtractor = async (req, res, next) => {
   }
 
   const user = await User.findById(decodedToken.id);
-  console.log("user extracted from token");
 
   req.user = user;
 
