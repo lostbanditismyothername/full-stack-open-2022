@@ -1,11 +1,11 @@
 import "./index.css";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import LoginForm from "./components/LoginForm";
 import Blogs from "./components/Blogs";
 import NewBlogForm from "./components/NewBlogForm";
 import Notification from "./components/Notification";
 import blogService from "./services/blogs";
-import { useEffect } from "react";
+import { UserContext } from "./context/UserContext";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -45,7 +45,9 @@ const App = () => {
           <p>{user.name} logged in</p>
           <button onClick={handleLogout}>logout</button>
           <hr />
-          <button onClick={() => setShowNewBlogForm(!showNewBlogForm)}>new blog</button>
+          <button onClick={() => setShowNewBlogForm(!showNewBlogForm)}>
+            {showNewBlogForm ? "cancel" : "new blog"}
+          </button>
           <NewBlogForm
             visible={showNewBlogForm}
             setVisible={setShowNewBlogForm}
@@ -55,9 +57,10 @@ const App = () => {
         </div>
       )}
       <hr />
-      <Blogs />
+      <UserContext.Provider value={user}>
+        <Blogs />
+      </UserContext.Provider>
     </div>
   );
 };
-
 export default App;
