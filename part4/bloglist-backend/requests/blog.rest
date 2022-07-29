@@ -1,5 +1,5 @@
 GET http://localhost:3003/api/blogs
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im90aGVyb3pndXIiLCJpZCI6IjYyZDdiMjM4ZDUzNzcxYjA4YTk0ZTY3OCIsImlhdCI6MTY1ODg0MTU1MCwiZXhwIjoxNjU4ODQ1MTUwfQ.CCM0rHl4U22YIobDEL7tAQ3A1BuAaVEAh30pnZGELEU
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNvbWVvbmppbW15IiwiaWQiOiI2MmRmZWZjYzc5ODk5MzU4MTU5NzJjY2YiLCJpYXQiOjE2NTg5MjIwMjksImV4cCI6MTY1ODkyNTYyOX0.uibTgrEEO1JLIlXdy4U1cl-5SjfVtKT7q7GKZDgNNFE
 
 
 ###
@@ -21,7 +21,6 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im90a
 }
 
 ###
-
 PUT http://localhost:3003/api/blogs/62b5e5f887252a8afc10b966
 Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im90aGVyb3pndXIiLCJpZCI6IjYyZDdiMjM4ZDUzNzcxYjA4YTk0ZTY3OCIsImlhdCI6MTY1ODg0MTU1MCwiZXhwIjoxNjU4ODQ1MTUwfQ.CCM0rHl4U22YIobDEL7tAQ3A1BuAaVEAh30pnZGELEU
