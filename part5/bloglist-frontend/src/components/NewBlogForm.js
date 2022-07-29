@@ -1,7 +1,8 @@
 import { useState } from "react";
 import blogService from "../services/blogs";
+import PropTypes from "prop-types";
 
-const BlogForm = ({ setSuccessMessage, setErrorMessage, visible, setVisible }) => {
+const NewBlogForm = ({ setSuccessMessage, setErrorMessage, visible, setVisible }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [url, setUrl] = useState("");
@@ -70,4 +71,9 @@ const BlogForm = ({ setSuccessMessage, setErrorMessage, visible, setVisible }) =
   );
 };
 
-export default BlogForm;
+NewBlogForm.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  setVisible: PropTypes.func.isRequired,
+};
+
+export default NewBlogForm;

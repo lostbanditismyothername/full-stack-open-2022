@@ -14,7 +14,7 @@ blogRouter.get("/:id", async (req, res) => {
   res.status(200).json(blog);
 });
 
-blogRouter.post("/", [middleware.userExtractor, middleware.tokenExtractor], async (req, res) => {
+blogRouter.post("/", [middleware.tokenExtractor, middleware.userExtractor], async (req, res) => {
   const { title, author, url, likes } = req.body;
 
   const user = req.user;
@@ -36,7 +36,7 @@ blogRouter.post("/", [middleware.userExtractor, middleware.tokenExtractor], asyn
 
 blogRouter.delete(
   "/:id",
-  [middleware.userExtractor, middleware.tokenExtractor],
+  [middleware.tokenExtractor, middleware.userExtractor],
   async (req, res) => {
     const blog = await Blog.findById(req.params.id);
 
@@ -55,7 +55,7 @@ blogRouter.delete(
   }
 );
 
-blogRouter.put("/:id", [middleware.userExtractor, middleware.tokenExtractor], async (req, res) => {
+blogRouter.put("/:id", [middleware.tokenExtractor, middleware.userExtractor], async (req, res) => {
   const blog = await Blog.findById(req.params.id);
   const { body } = req;
   const { title, author, url, likes } = body;

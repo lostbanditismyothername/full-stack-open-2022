@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import blogService from "../services/blogs";
+import PropTypes from "prop-types";
 
 const Blog = ({ blog }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -9,8 +10,10 @@ const Blog = ({ blog }) => {
   // handle delete
   const handleDelete = async () => {
     try {
-      const deletedBlog = await blogService.remove(blog.id, blog);
-      alert(`${deletedBlog.title} is removed`);
+      if (window.confirm("wanna delete?")) {
+        const deletedBlog = await blogService.remove(blog.id, blog);
+        alert(`${deletedBlog.title} is removed`);
+      }
     } catch (exception) {
       alert(exception.message);
     }
@@ -31,6 +34,9 @@ const Blog = ({ blog }) => {
       >
         {showDetails ? "hide" : "view"}
       </button>
+      <button style={{ marginLeft: 10, background: "pink" }} onClick={handleLike}>
+        Like
+      </button>
       <button
         style={{
           marginLeft: 10,
@@ -41,9 +47,6 @@ const Blog = ({ blog }) => {
       >
         delete
       </button>
-      <button style={{ marginLeft: 10, background: "pink" }} onClick={handleLike}>
-        Like
-      </button>
       <ul style={{ display: showDetails ? "" : "none" }}>
         <p>URL: {blog.url}</p>
         <p>Created by: {blog.user.username}</p>
@@ -51,6 +54,10 @@ const Blog = ({ blog }) => {
       </ul>
     </div>
   );
+};
+
+Blog.propTypes = {
+  blog: PropTypes.object.isRequired,
 };
 
 export default Blog;
