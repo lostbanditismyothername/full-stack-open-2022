@@ -6,7 +6,13 @@ const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    blogService.getAll().then((blogs) => setBlogs(blogs));
+    const fetchBlogs = async () => {
+      const blogs = await blogService.getAll();
+      const sortedBlogs = blogs.sort((b1, b2) => b2.likes - b1.likes);
+      setBlogs(sortedBlogs);
+    };
+
+    fetchBlogs();
   }, []);
 
   return (
