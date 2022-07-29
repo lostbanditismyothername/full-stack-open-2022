@@ -19,6 +19,7 @@ const errorHandler = (error, _req, res, next) => {
   logger.error(error.message);
 
   if (error.name === "CastError") {
+    console.log(error.message);
     return res.status(400).send({ Error: "Malformatted ID" });
   }
 
@@ -31,12 +32,6 @@ const errorHandler = (error, _req, res, next) => {
 
 // Extracts the token in Auth header and places it in request obj
 const tokenExtractor = (req, res, next) => {
-  // skip for login since there will be no token available yet
-  console.log("---", req.path);
-  if (req.path === "/api/login" || req.path === "/api/users") {
-    return next();
-  }
-
   const auth = req.get("Authorization");
   let token;
 
@@ -53,11 +48,6 @@ const tokenExtractor = (req, res, next) => {
 
 // Checks the token and finds the user that token belongs to
 const userExtractor = async (req, res, next) => {
-  // skip for login since there will be no token available yet
-  if (req.path === "/api/login" || req.path === "/api/users") {
-    return next();
-  }
-
   const token = req.token;
   const decodedToken = jwt.verify(token, config.SECRET);
 
