@@ -16,6 +16,12 @@ const Blog = ({ blog }) => {
     }
   };
 
+  // handle like
+  const handleLike = async () => {
+    const newBlogObj = { ...blog, likes: blog.likes + 1 };
+    return await blogService.update(blog.id, newBlogObj);
+  };
+
   return (
     <div style={{ border: "1px solid gray", padding: "0.5rem" }}>
       {blog.title} {blog.author}
@@ -34,6 +40,9 @@ const Blog = ({ blog }) => {
         onClick={handleDelete}
       >
         delete
+      </button>
+      <button style={{ marginLeft: 10, background: "pink" }} onClick={handleLike}>
+        Like
       </button>
       <ul style={{ display: showDetails ? "" : "none" }}>
         <p>URL: {blog.url}</p>
