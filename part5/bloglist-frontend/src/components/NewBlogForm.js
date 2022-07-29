@@ -1,11 +1,15 @@
 import { useState } from "react";
 import blogService from "../services/blogs";
 
-const BlogForm = ({ setSuccessMessage, setErrorMessage }) => {
+const BlogForm = ({ setSuccessMessage, setErrorMessage, visible, setVisible }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [url, setUrl] = useState("");
 
+  // show/hide form
+  const display = visible ? "" : "none";
+
+  // add new blog
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -15,8 +19,6 @@ const BlogForm = ({ setSuccessMessage, setErrorMessage }) => {
       url,
     };
 
-    console.log(blogObj);
-
     try {
       await blogService.create(blogObj);
       setSuccessMessage(`${title} created by ${author}`);
@@ -24,6 +26,7 @@ const BlogForm = ({ setSuccessMessage, setErrorMessage }) => {
       setTitle("");
       setAuthor("");
       setUrl("");
+      setVisible(!visible);
     } catch (exception) {
       setErrorMessage("Blog creation error", exception.message);
       setTimeout(() => setErrorMessage(null), 3000);
@@ -31,7 +34,7 @@ const BlogForm = ({ setSuccessMessage, setErrorMessage }) => {
   };
 
   return (
-    <div>
+    <div style={{ display: display }}>
       <h2>Add new blog</h2>
       <form onSubmit={handleSubmit}>
         <div>

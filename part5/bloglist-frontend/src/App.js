@@ -2,7 +2,7 @@ import "./index.css";
 import { useState } from "react";
 import LoginForm from "./components/LoginForm";
 import Blogs from "./components/Blogs";
-import BlogForm from "./components/BlogForm";
+import NewBlogForm from "./components/NewBlogForm";
 import Notification from "./components/Notification";
 import blogService from "./services/blogs";
 import { useEffect } from "react";
@@ -11,6 +11,7 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [showNewBlogForm, setShowNewBlogForm] = useState(false);
 
   // check if user exists in the local storage
   useEffect(() => {
@@ -22,7 +23,7 @@ const App = () => {
     }
   }, []);
 
-  // handleLogout
+  // handle logout
   const handleLogout = () => {
     window.localStorage.removeItem("loggedBlogger");
     window.location.href = "/login";
@@ -43,10 +44,18 @@ const App = () => {
         <div>
           <p>{user.name} logged in</p>
           <button onClick={handleLogout}>logout</button>
-          <BlogForm setErrorMessage={setErrorMessage} setSuccessMessage={setSuccessMessage} />
-          <Blogs />
+          <hr />
+          <button onClick={() => setShowNewBlogForm(!showNewBlogForm)}>new blog</button>
+          <NewBlogForm
+            visible={showNewBlogForm}
+            setVisible={setShowNewBlogForm}
+            setErrorMessage={setErrorMessage}
+            setSuccessMessage={setSuccessMessage}
+          />
         </div>
       )}
+      <hr />
+      <Blogs />
     </div>
   );
 };
